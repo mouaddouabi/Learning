@@ -27,7 +27,7 @@ pipeline {
         stage('Rebuild & Deploy with Docker Compose') {
             steps {
                 // Optional: Stop running containers if needed
-                sh 'docker-compose down'
+                //sh 'docker-compose down'
 
                 // Rebuild and restart the stack (app + SQL Server + Jenkins)
                 sh 'docker-compose up --build -d'
