@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven 3.8.5' // Replace with your Jenkins Maven name
-        jdk 'JDK 17'        // Replace with your Jenkins JDK name
-    }
+    //tools {
+    //    maven 'Maven 3.8.5' // Replace with your Jenkins Maven name
+    //    jdk 'JDK 17'        // Replace with your Jenkins JDK name
+    //}
 
     environment {
         COMPOSE_FILE = 'docker-compose.yml'
