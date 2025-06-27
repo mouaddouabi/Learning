@@ -28,8 +28,15 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root  # run as root to allow Docker usage; adjust if needed
     ports:
       - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock    # Docker socket mount
+      - /usr/bin/docker:/usr/bin/docker               # Docker CLI binary mount
     networks:
       - backend
 
