@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker/compose:latest' // This image includes docker + compose plugin
+            image 'maven:3.9.4-eclipse-temurin-17' // docker/compose:latest This image includes docker + compose plugin
             args '-v /var/run/docker.sock:/var/run/docker.sock' // mount docker socket
         }
     }
