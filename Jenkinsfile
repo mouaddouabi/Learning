@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'docker/compose:latest' // This image includes docker + compose plugin
+            args '-v /var/run/docker.sock:/var/run/docker.sock' // mount docker socket
+        }
+    }
     tools {
         maven 'maven3' // Replace with your Jenkins Maven name
         jdk 'jdk17'        // Replace with your Jenkins JDK name
