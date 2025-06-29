@@ -34,7 +34,7 @@ pipeline {
                 //sh 'docker-compose down'
 
                 // Rebuild and restart the stack (app + SQL Server + Jenkins)
-                sh 'docker-compose up --build -d'
+                sh 'docker compose up --build -d'
             }
         }
 
