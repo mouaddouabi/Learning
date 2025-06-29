@@ -1,17 +1,17 @@
-FROM jenkins/jenkins:lts
+FROM maven:3.9.4-eclipse-temurin-17
 
 USER root
 
-# Installer Docker CLI et Compose
+# Install Docker CLI and Compose plugin
 RUN apt-get update && \
-    apt-get install -y curl gnupg lsb-release && \
-    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
+    apt-get install -y curl gnupg lsb-release ca-certificates && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y docker-ce-cli docker-compose-plugin && \
     apt-get clean
 
-# ✅ Créer le groupe docker AVANT d'ajouter l'utilisateur Jenkins dedans
-RUN groupadd docker && usermod -aG docker jenkins
+# Optional: Add a user or groups if needed
+# RUN groupadd docker && usermod -aG docker jenkins
 
-USER jenkins
+USER root
